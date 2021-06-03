@@ -1,0 +1,23 @@
+{
+  "properties": [
+    {
+      "name": "application-security-key",
+      "type": "java.lang.String",
+      "description": "The secret key for signing the jwt token."
+    },
+    {
+      "name": "jwt-token-expiration-time",
+      "type": "java.lang.String",
+      "description": "Description for jwt-token-expiration-time."
+    },
+    {
+      "name": "security-secret-key",
+      "type": "java.lang.String",
+      "description": "Description for security-secret-key."
+    },
+    {
+      "name": "spring.sql.init.platform",
+      "type": "java.lang.String",
+      "description": "Description for spring.sql.init.platform."
+    }
+  ] }

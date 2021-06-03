@@ -3,9 +3,15 @@ package spring.springdemo.security.util;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.hibernate.cfg.Environment;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +19,12 @@ import java.util.function.Function;
 
 @Service
 public class JWTUtil {
-    private final String SECRET = "my_ultimate_secret";
+    @Value("${application-security-key}")
+    private String SECRET;
+
+    @Value("${token-expiration-time}")
+    private String EXPIRATION_TIME;
+
 
     public String extractUserName(String token){
         return extractClaim(token, Claims::getSubject);
@@ -45,13 +56,21 @@ public class JWTUtil {
         return createToken(claims, userDetails.getUsername());
     }
 
-    private String createToken(Map<String, Object> claims, String subject) {
+    private String createToken(Map<String, Object> claims, String subject){
+        Date ex = null;
+        try{
+            ex = java.text.DateFormat.getDateInstance().parse(LocalDate.now() + EXPIRATION_TIME);
+        }catch (ParseException ignored){}
+
+
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(subject)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 *60 *10))
-                .signWith(SignatureAlgorithm.HS256, SECRET)
+                .setExpiration(ex)
+
+//                .setExpiration()
+                .signWith(SignatureAlgorithm.HS256, "SECRET")
                 .compact();
     }
 

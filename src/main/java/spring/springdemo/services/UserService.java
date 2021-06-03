@@ -19,6 +19,10 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return new User();
+        return repository.findByEmail(s).orElseThrow(RuntimeException::new);
+    }
+
+    public User saveUser(User user){
+        return repository.save(user);
     }
 }
