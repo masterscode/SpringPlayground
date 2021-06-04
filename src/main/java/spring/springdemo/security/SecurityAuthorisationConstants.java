@@ -13,7 +13,7 @@ public class SecurityAuthorisationConstants {
     public static final String TOKEN_PREFIX = "Bearer ";
     public static final String HEADER_STRING = "Authorization";
     public static final String[] PUBLIC_URIS = new String[]{
-                    "/",
+                    "/**",
                     "/others",
                     "/v2/api-docs",
                     "/swagger-resources",

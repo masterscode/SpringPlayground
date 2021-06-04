@@ -30,8 +30,8 @@ public class GitProfile {
                     location,
                     blog,
                     company,
-                    name, type;
-    private String followers, following, public_repos, public_gists;
+                    name, type,
+            followers, following, public_repos, public_gists;
     private LocalDate created_at, updated_at;
 
 }

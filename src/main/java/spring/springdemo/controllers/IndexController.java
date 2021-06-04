@@ -9,13 +9,19 @@ import spring.springdemo.models.GitProfile;
 import spring.springdemo.services.ThirdPartyAPIService;
 
 @RestController
-@RequestMapping("/")
 public class IndexController {
     @Autowired
     ThirdPartyAPIService apiService;
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<GitProfile> getIndex() {
         return
-                ResponseEntity.ok(apiService.getUserProfile());
+                ResponseEntity.ok(apiService.getUserProfile() );
+    }
+
+    @GetMapping("/webclient")
+    public ResponseEntity<?> getUserProfile(){
+        return ResponseEntity.ok(
+                apiService.getUserProfileWithWebClient()
+        );
     }
 } 
