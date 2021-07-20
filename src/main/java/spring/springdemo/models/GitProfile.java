@@ -2,10 +2,11 @@ package spring.springdemo.models;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Data
-public class GitProfile {
+public class GitProfile implements Serializable {
 
     private String login;
     private String id, node_id, gravatar_id;

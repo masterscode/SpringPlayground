@@ -13,6 +13,7 @@ public class SpringDemoRestExceptionHandler extends ResponseEntityExceptionHandl
 
     @Override
     protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+//        return new ResponseEntity(new RestException("", "", ""));
         return super.handleHttpRequestMethodNotSupported(ex, headers, status, request);
     }
 
